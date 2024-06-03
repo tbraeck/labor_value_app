@@ -3,15 +3,15 @@ import Image from "next/image";
 import { Box } from '@mui/material';
 
 export default function Home() {
-  const imageUrl = "./assets/working.jpg";
+  const imageUrl = "/assets/working.jpg";
 
   return (
     <Box
       sx={{
         position: 'relative',
-        height: '500px',
+        height: '100vh',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -22,13 +22,13 @@ export default function Home() {
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%',
+          height: '100vh',
           zIndex: -1,
         }}
       >
         <Image
           layout="fill"
-          src="/working.jpg"
+          src={imageUrl}
           alt="Image alt"
           style={{ objectFit: "cover" }}
         />
@@ -39,11 +39,19 @@ export default function Home() {
             left: 0,
             width: '100%',
             height: '100%',
-            backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
+            backgroundImage: url({imageUrl}) ,
           }}
         />
       </Box>
-      <SearchAppBar />
+      <Box
+        sx={{
+          width: '100%',
+          padding: 2,
+          zIndex: 1,
+        }}
+      >
+        <SearchAppBar />
+      </Box>
     </Box>
   );
 }
