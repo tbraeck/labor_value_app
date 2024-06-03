@@ -1,10 +1,13 @@
-// import Image from "next/image";
-import MenuAppBar from "./_components/MenuAppBar";
+import SearchAppBar from "./_components/SearchAppBar";
+import ImageBackgroundMain from "./_components/ImageBackgroundMain";
 
 export default function Home() {
   return (
     <>
-    <MenuAppBar/>
+    <ImageBackgroundMain>
+    <SearchAppBar/>
+
+    </ImageBackgroundMain>
     </>
    
   );
