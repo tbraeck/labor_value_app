@@ -33,3 +33,9 @@ body {
 }
 
 
+.bg-image-wrapper {
+ 
+  background-image: url("/_assets/working.jpg");
+  background-repeat: no-repeat;
+  background-size:   cover;
+}

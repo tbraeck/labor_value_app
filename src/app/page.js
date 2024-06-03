@@ -1,57 +1,16 @@
 import SearchAppBar from "./_components/SearchAppBar";
-import Image from "next/image";
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
+import './styles/globals.css';
+
 
 export default function Home() {
-  const imageUrl = "/assets/working.jpg";
-
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100vh',
-          zIndex: -1,
-        }}
-      >
-        <Image
-          layout="fill"
-          src={imageUrl}
-          alt="Image alt"
-          style={{ objectFit: "cover" }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: url({imageUrl}) ,
-          }}
-        />
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
-          padding: 2,
-          zIndex: 1,
-        }}
-      >
-        <SearchAppBar />
-      </Box>
+    <div className="relative h-screen w-screen bg-cover bg-center" style={{ backgroundImage: "url('../public/_assets/working.jpg')" }}>
+    <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
+    <Box className="relative z-10 w-full">
+      <SearchAppBar />
     </Box>
+  </div>
+
   );
 }
