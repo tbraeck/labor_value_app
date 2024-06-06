@@ -1,23 +1,29 @@
+import React from 'react';
 import SearchAppBar from "./_components/SearchAppBar";
-import MainForm from "./_components/MainForm";
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 
 import './styles/globals.css';
 
-
 export default function Home() {
-  return (
-    <div className="relative h-screen w-screen bg-cover bg-center" style={{ backgroundImage: "url('../public/_assets/working.jpg')", backgroundRepeat: "no-repeat", }}>
-    <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-    <CssBaseline/>
-    <Box className="relative z-10 w-full">
-      <SearchAppBar />
-    </Box>
-    <MainForm/>
-    
-    
-  </div>
 
+  const backgroundImageStyle = {
+    backgroundImage: `url(/public/working.jpg)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  };
+
+  return (
+    <div className="relative h-screen" style={backgroundImageStyle}>
+      <Box className="relative z-10 w-full">
+        <SearchAppBar />
+      </Box>
+    </div>
   );
 }
