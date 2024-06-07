@@ -1,8 +1,9 @@
 import React from 'react';
 import SearchAppBar from "./_components/SearchAppBar";
-import ImgMediaCard from './_components/ImgMediaCard';
+// import ImgMediaCard from './_components/ImgMediaCard';
 // import ValueForm from './_components/ValueForm'; 
 import Box from '@mui/material/Box';
+import MainForm from './_components/MainForm';
 
 import './styles/globals.css';
 
@@ -13,7 +14,7 @@ export default function Home() {
         <SearchAppBar />
       </Box>
       <Box className="flex direction-column justify-center items-center">
-        <ImgMediaCard/>
+        <MainForm/>
       </Box>
     </div>
   );

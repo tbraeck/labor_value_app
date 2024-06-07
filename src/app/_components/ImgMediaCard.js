@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import BalanceIcon from '@mui/icons-material/Balance';
+import FreeSolo from './FreeSolo';
+import { Group } from '@mui/icons-material';
 
 export default function ImgMediaCard() {
   return (
@@ -20,7 +22,7 @@ export default function ImgMediaCard() {
           padding: 2, // add padding around the card if needed
         }}
       >
-        <Card sx={{ maxWidth: 500 }}>
+        <Card sx={{ minWidth: 500, minHeight: 400 }} elevation={5}>
           {/* <CardMedia
             component="img"
             alt="green iguana"
@@ -30,20 +32,27 @@ export default function ImgMediaCard() {
           /> */}
           <BalanceIcon 
           color='secondary'
+          sx={{ fontSize: 100, justifyContent: 'center', alignItems: 'center' }}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography gutterBottom variant="h5" sx={{justifyContent: "center"}} component="div">
+              SEARCH JOB VALUES HERE
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Box>
+              {/* <FreeSolo/> */}
+            </Box>
+            {/* <Typography variant="body2" color="text.secondary">
               Lizards are a widespread group of squamate reptiles, with over 6,000
               species, ranging across all continents except Antarctica.
-            </Typography>
+            </Typography> */}
           </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
+         <CardActions  sx={{
+            display: 'flex',
+            alignitems: 'center',
+          }}> 
+             <Button size="medium" variant='contained' color='secondary' elevation={5}>SEARCH</Button>
+            {/* <Button size="small">Learn More</Button> */}
+          </CardActions> 
         </Card>
       </Box>
     </div>
