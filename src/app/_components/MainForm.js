@@ -34,7 +34,7 @@ const MainForm = () => {
 
     const handleReset = (e) => {
       e.preventDefault();
-      setFormData('')
+      setFormData(initialFormData)
 
     }
 
