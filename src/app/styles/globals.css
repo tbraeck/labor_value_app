@@ -83,6 +83,9 @@ body {
 }
 
 /* form.module.css */
+.container {
+  border-radius: 60px;
+}
 
 .form {
   display: flex;
@@ -110,7 +113,7 @@ body {
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -125,6 +128,9 @@ body {
   background-color: #1c5f3a;
   color: #fff;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
 }
 
 .button:hover {
