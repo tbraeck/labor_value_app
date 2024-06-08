@@ -91,13 +91,14 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgb(226, 222, 222);
-  margin-top: 100px;
-  /* align-items: center; */
+  margin-top: 250px;
+  filter: drop-shadow(30px 30px 30px  #878787);
   justify-content: center;
   width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  
 }
 
 .label {

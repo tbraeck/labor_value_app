@@ -16,11 +16,11 @@ const MainForm = () => {
     const [jobOptions, setJobOptions] = useState([]);
 
     useEffect(() => {
-        // Fetch the data from the JSON file
-        fetch('data.json') // Replace with the correct path to your data.json file
+        fetch('.data.json') 
             .then((response) => response.json())
             .then((data) => {
-                setJobOptions(data.jobs || []); // Assuming your JSON has a 'jobs' array
+              console.log(data);
+                setJobOptions(data); 
             })
             .catch((error) => {
                 console.error("Error fetching job data:", error);
@@ -44,7 +44,7 @@ const MainForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
+      console.log(formData.jobName)
     };
 
     return (
@@ -99,7 +99,7 @@ const MainForm = () => {
                 variant="outlined"
             />
 
-            <Button type="submit" className="button" variant="contained" color="primary">
+            <Button type="submit" onSubmit={handleSubmit} className="button" variant="contained" color="primary">
                 Submit
             </Button>
             <Button type="reset" onClick={handleReset}  className="button" variant="outlined" color="secondary">
