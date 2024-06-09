@@ -90,7 +90,7 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  background-color: rgb(226, 222, 222);
+  background-color: rgb(255, 255, 255);
   margin-top: 250px;
   filter: drop-shadow(30px 30px 30px  #878787);
   justify-content: center;
@@ -103,7 +103,8 @@ body {
 
 .label {
   display: block;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .input,
@@ -112,6 +113,7 @@ body {
 .button {
   width: 100%;
   padding: 8px;
+  margin-top: 5px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -125,11 +127,13 @@ body {
 .radio {
   margin-right: 10px;
 }
+
 .button {
   background-color: #1c5f3a;
   color: #fff;
   cursor: pointer;
   align-items: center;
+  margin-top: 10px;
   justify-content: center;
   width: 100px;
 }
