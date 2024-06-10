@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Box } from "@mui/material";
+import Image from "next/image";
 
 const MainForm = () => {
   const initialFormData = {
@@ -48,6 +50,10 @@ const MainForm = () => {
     };
 
     return (
+      <Box>
+        <Box>
+          <Image src="Scale.gif" height="150" width="150" alt="Scale" />
+        </Box>
         <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="jobName" className="label">
                 JOB NAME
@@ -106,6 +112,7 @@ const MainForm = () => {
                 Reset
             </Button>
         </form>
+        </Box>
     );
 };
 
