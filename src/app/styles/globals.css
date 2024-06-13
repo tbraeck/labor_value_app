@@ -91,7 +91,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
-  margin-top: 250px;
+  margin-top: 50px;
   filter: drop-shadow(30px 30px 30px  #878787);
   justify-content: center;
   width: 600px;

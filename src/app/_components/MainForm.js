@@ -54,7 +54,7 @@ const MainForm = () => {
   };
 
   return (
-    <Box>
+    <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
           <Image src="/Scale.gif" height="150" width="150" alt="Scale" />
@@ -121,4 +121,3 @@ const MainForm = () => {
 };
 
 export default MainForm;
-  
