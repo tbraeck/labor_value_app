@@ -1,24 +1,27 @@
-// import styles from './CountriesTable.module.css';
+// components/DataTable.js
 
-export default function DataTable({countries}) {
-    return (
-        <div>
-        <div className={styles.heading}>
-            <button className={styles.heading_name}>
-                <div>Name</div>
-            </button>
+import React from 'react';
 
-            <button className={styles.heading_population}>
-                <div>Population</div>
-            </button>
-        </div>
+export default function DataTable({ countries }) {
+  return (
+    <div>
+      <div>
+        <button className="headingName">
+          <div>Name</div>
+        </button>
 
-        {countries.map((country) => { 
-            <div className={styles.row}>
-            <div className={styles.name}>{country.name}</div>
-            <div className={styles.population}>{country.population}</div>
+        <button className="heading_population">
+          <div>Population</div>
+        </button>
+      </div>
+
+      {countries.map((country) => (
+        <div key={country.name}>
+          <div>{country.name}</div>
+          <div>{country.population}</div>
         </div>
-        })}
-        </div>
-    );
-};
+      ))}
+    </div>
+  );
+}
+    
