@@ -3,7 +3,7 @@ import SearchAppBar from "./_components/SearchAppBar";
 import Head from "next/head";
 import Box from '@mui/material/Box';
 import MainForm from './_components/MainForm';
-
+import DataTable from './_components/DataTable';
 import './styles/globals.css';
 
 export default function Home() {
@@ -18,6 +18,9 @@ export default function Home() {
       </Box>
       <Box className="flex direction-column justify-center items-center">
         <MainForm/>
+      </Box>
+      <Box>
+        <DataTable/>
       </Box>
     </div>
   );
