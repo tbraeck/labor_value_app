@@ -1,31 +1,51 @@
 // components/DataTable.js
+'use client';
+import axios from 'axios';
+import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 
-import React from 'react';
+const DataTable = () => {
+  const [userList, setUserList] = useState([]);
 
-export default function DataTable() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get('https://reqres.in/api/users');
+        setUserList(data.data); // Set the data to state
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div style={{margin:"30px"}}>
-      <table style={{display: "flex", flexDirection: "column",border:"2px", borderColor: 'black'}}>
+    <div style={{ margin: '30px' }}>
+      <table border="1">
         <thead>
-          <th style={{margin: "10px",borderColor: 'black'}}>First Name</th>
-          <th style={{marginRight: "10px"}}>Last Name</th>
-          <th style={{marginRight: "10px"}}>Email</th>
-          <th style={{marginRight: "10px"}}>Avatar</th>
-        </thead>
-        <div>
-        <tbody>
           <tr>
-            <td>Cairpcoders</td>
-            <td>Ednalan</td>
-            <td>cairocoders@gmail.com</td>
-            <td>photo</td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Avatar</th>
           </tr>
+        </thead>
+        <tbody>
+          {userList.map((x, i) => (
+            <tr key={i}>
+              <td>{x.first_name}</td>
+              <td>{x.last_name}</td>
+              <td>{x.email}</td>
+              <td>
+                <Image src={x.avatar} alt="" width="50" height="50" />
+              </td>
+            </tr>
+          ))}
         </tbody>
-        </div>
-        
-
       </table>
     </div>
   );
-}
-    
+};
+
+export default DataTable;
