@@ -91,13 +91,13 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
-  margin-top: 50px;
+  margin-top: 150px;
   filter: drop-shadow(30px 30px 30px  #878787);
   justify-content: center;
   width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 35px;
   
 }
 
@@ -124,7 +124,7 @@ margin: 0px;
   margin-top: 5px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 30px;
   box-sizing: border-box;
 }
 
@@ -146,6 +146,7 @@ margin: 0px;
   justify-content: center;
   margin: 10px;
   width: 100px;
+  border-radius: 30px;
 }
 
 .button:hover {

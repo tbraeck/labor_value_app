@@ -109,10 +109,11 @@ const MainForm = () => {
           variant="outlined"
         />
 
-        <Button type="submit" onSubmit={handleSubmit} className="button" variant="contained" color="primary">
+        <Button type="submit" onSubmit={handleSubmit} 
+        className="button" variant="contained" color="primary" sx={{borderRadius: "5px", display: "flex", alignItems: "center", justifyContent:"center"}}>
           Submit
         </Button>
-        <Button type="reset" onClick={handleReset} className="button" variant="outlined" color="secondary">
+        <Button type="reset" onClick={handleReset} className="button" variant="outlined" color="secondary" sx={{borderRadius: "5px", display: "flex", alignItems: "center", justifyContent:"center"}}>
           Reset
         </Button>
       </form>

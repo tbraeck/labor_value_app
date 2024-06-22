@@ -1,4 +1,4 @@
-{ "jobs" : [{"id":1,"job_title":"Financial Analyst","zip_code":null,"gender":"Male","income_year":"$260078.74"},
+[{"id":1,"job_title":"Financial Analyst","zip_code":null,"gender":"Male","income_year":"$260078.74"},
 {"id":2,"job_title":"Chemical Engineer","zip_code":"431373","gender":"Female","income_year":"$1979338.48"},
 {"id":3,"job_title":"Pharmacist","zip_code":null,"gender":"Female","income_year":"$1999299.63"},
 {"id":4,"job_title":"Administrative Assistant I","zip_code":null,"gender":"Male","income_year":"$1590277.54"},
@@ -999,4 +999,3 @@
 {"id":999,"job_title":"Administrative Assistant IV","zip_code":"38009 CEDEX 1","gender":"Polygender","income_year":"$1479776.68"},
 {"id":1000,"job_title":"Statistician IV","zip_code":null,"gender":"Female","income_year":"$266290.97"}]
 
-}
