@@ -42,7 +42,7 @@ body {
 
 .background-container {
   position: relative;
-  height: 100vh;
+  height: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
