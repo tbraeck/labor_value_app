@@ -9,11 +9,14 @@ const DataTable2 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/data.json');
-        console.log('Fetch successful, data:', response.data);
-        
+        console.log('Fetching data...');
+        const response = await axios.get('./data.json');
+        console.log('Fetch successful, response:', response);
+        console.log('Response data:', response.data);
+
         if (response.data && Array.isArray(response.data)) {
           setLaborList(response.data);
+          console.log('Data set in state:', response.data);
         } else {
           console.error('Invalid data structure:', response.data);
         }
@@ -37,14 +40,20 @@ const DataTable2 = () => {
           </tr>
         </thead>
         <tbody>
-          {laborList.map((x, i) => (
-            <tr key={i}>
-              <td>{x.job_title}</td>
-              <td>{x.zip_code}</td>
-              <td>{x.gender}</td>
-              <td>{x.income_year}</td>
+          {laborList.length > 0 ? (
+            laborList.map((x, i) => (
+              <tr key={i} style={{margin: "10px"}}>
+                <td>{x.job_title || "data not available"}</td>
+                <td>{x.zip_code || "data not available"}</td>
+                <td>{x.gender}</td>
+                <td>{x.income_year}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No data available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
