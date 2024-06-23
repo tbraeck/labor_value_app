@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import MainForm from './_components/MainForm';
 // import DataTable from './_components/DataTable';
 import DataTable2 from './_components/DataTable2';
+
 import './styles/globals.css';
 
 export default function Home() {
