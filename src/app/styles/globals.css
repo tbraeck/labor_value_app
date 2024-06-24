@@ -86,6 +86,10 @@ body {
 .container {
   border-radius: 60px;
   filter: drop-shadow(0 0 1rem rgb(88, 89, 90));
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  ;
 }
 
 .form {

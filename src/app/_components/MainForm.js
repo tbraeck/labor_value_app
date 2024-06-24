@@ -12,8 +12,7 @@ const MainForm = () => {
     job_title: "",
     zip_code: "",
     gender: "",
-    income_year: '',
-    
+    income_year: ""
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -46,7 +45,7 @@ const MainForm = () => {
 
   const handleReset = (e) => {
     e.preventDefault();
-    setFormData(initialFormData);
+    setFormData(  );
     setFilteredOptions(jobOptions);
   };
 
@@ -117,6 +116,7 @@ const MainForm = () => {
         {/* <label htmlFor="gender" className="label">
           GENDER
         </label> */}
+        <Box sx={{justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "row", marginTop: "15px"}}>
         <label>
         <input
           type="radio"
@@ -137,6 +137,20 @@ const MainForm = () => {
         />{" "}
         Female
       </label>
+      <label >
+        <input
+          type="radio"
+          name="gender"
+          value="non-binary"
+          // checked={state.gender === "male"}
+          onChange={handleChange}
+        />{" "}
+        Non-Binary
+      </label>
+
+
+        </Box>
+        
         {/* <TextField
           required
           id="gender"
@@ -157,8 +171,8 @@ const MainForm = () => {
           required
           type="number"
           min="0"
-          id="years_exp"
-          name="years_exp"
+          id="income_year"
+          name="income_year"
           placeholder="Years of Experience"
           value={formData.years_exp}
           onChange={handleChange}
@@ -167,8 +181,12 @@ const MainForm = () => {
           onKeyPress={preventMinus}
 
         />
-
-        <Button
+      <Box sx={{display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            marginTop: "15px"}}>
+      <Button
           type="submit"
           onSubmit={handleSubmit}
           className="button"
@@ -178,7 +196,9 @@ const MainForm = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            flexDirection: "column",
+            margin: "10px"
           }}
         >
           Submit
@@ -193,11 +213,16 @@ const MainForm = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            flexDirection: "column"
+
           }}
         >
           Reset
         </Button>
+
+      </Box>
+       
       </form>
     </Box>
   );
