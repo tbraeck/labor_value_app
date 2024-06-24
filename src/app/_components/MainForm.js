@@ -65,6 +65,12 @@ const MainForm = () => {
     e.preventDefault();
     console.log(formData);
   };
+  const preventMinus = (e) => {
+    if (e.code === 'Minus') {
+        e.preventDefault();
+    }
+};
+
 
   return (
     <Box className="container">
@@ -150,6 +156,7 @@ const MainForm = () => {
         <TextField
           required
           type="number"
+          min="0"
           id="years_exp"
           name="years_exp"
           placeholder="Years of Experience"
@@ -157,6 +164,8 @@ const MainForm = () => {
           onChange={handleChange}
           className="input"
           variant="outlined"
+          onKeyPress={preventMinus}
+
         />
 
         <Button
