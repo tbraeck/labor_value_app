@@ -24,9 +24,9 @@ export default function Home() {
       {/* <Box>
         <DataTable className="flex direction-column justify-center items-center"/>
       </Box> */}
-      <Box>
+      {/* <Box>
         <DataTable2/>
-      </Box>
+      </Box> */}
     </div>
   );
 }
