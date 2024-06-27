@@ -75,7 +75,7 @@ const MainForm = () => {
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/Scale.gif" height="150" width="150" alt="Scale" />
+          <Image src="/scale2.gif" height="150" width="150" alt="Scale" />
         </div>
         <label htmlFor="job_title" className="label">
           JOB NAME

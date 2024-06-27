@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import MainForm from './_components/MainForm';
 // import DataTable from './_components/DataTable';
 import DataTable2 from './_components/DataTable2';
+import Image from 'next/image';
 
 import './styles/globals.css';
 
@@ -13,10 +14,11 @@ export default function Home() {
     
     <div className="background-container">
        <Head>
-            <link rel="icon" href="%PUBLIC_URL%/LOGO.ico" />
+            <link rel="shortcut icon" href="/LOGO.ico" />
         </Head>
       <Box className="relative z-10 w-full top-bar">
-        <SearchAppBar />
+        <SearchAppBar 
+        />
       </Box>
       <Box className="flex direction-column justify-center items-center">
         <MainForm/>

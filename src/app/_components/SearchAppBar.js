@@ -1,4 +1,5 @@
 'use client'
+
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -9,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import JoinRightIcon from '@mui/icons-material/JoinRight';
+import Image from 'next/image';
 
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -55,26 +57,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+
+  const headerLogo =  
+  <a href='http://localhost:3000/'><Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0} zIndex={9}/> </a> 
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          > */}
+            {/* <MenuIcon /> */}
+          {/* </IconButton> */}
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            ValueMe
+            {headerLogo}
           </Typography>
           <Search>
             <SearchIconWrapper>
