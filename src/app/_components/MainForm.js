@@ -116,13 +116,14 @@ const MainForm = () => {
         {/* <label htmlFor="gender" className="label">
           GENDER
         </label> */}
-        <Box sx={{justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "row", marginTop: "15px"}}>
+        <Box sx={{justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px"}}>
         <label>
         <input
           type="radio"
           name="gender"
           value="male"
           // checked={state.gender === "male"}
+          defaultChecked
           onChange={handleChange}
         />{" "}
         Male
