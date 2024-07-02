@@ -1,18 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import JoinRightIcon from '@mui/icons-material/JoinRight';
 import Image from 'next/image';
-
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({
@@ -45,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
@@ -83,14 +78,23 @@ export default function SearchAppBar() {
   };
 
   const filterData = (value) => {
-    const filtered = data.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
+    const filtered = data.filter((item) => {
+      const searchLower = value.toLowerCase();
+      return (
+        (item.job_title && item.job_title.toLowerCase().includes(searchLower)) ||
+        (item.zip_code && item.zip_code.toString().includes(searchLower)) ||
+        (item.gender && item.gender.toLowerCase().includes(searchLower)) ||
+        (item.income_year && item.income_year.toLowerCase().includes(searchLower))
+      );
+    });
     setFilteredData(filtered);
   };
 
-  const headerLogo =  
-  <a href='http://localhost:3000/'><Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0} zIndex={9}/> </a> 
+  const headerLogo = (
+    <a href='http://localhost:3000/'>
+      <Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0} zIndex={9} />
+    </a>
+  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -117,18 +121,25 @@ export default function SearchAppBar() {
           </Search>
         </Toolbar>
       </AppBar>
-      <Box sx={{ padding: 2 }}>
-        {filteredData.length > 0 ? (
-          filteredData.map((item, index) => (
-            <Typography key={index} variant="body1">
-              {item.name}
-            </Typography>
-          ))
-        ) : (
-          <Typography variant="body1">No results found</Typography>
-        )}
+      <Box sx={{ display: 'flex' }}>
+        <Box sx={{ flex: 1, padding: 2 }}>
+          {/* Other content can go here */}
+        </Box>
+        <Box sx={{ flex: 0, padding: 2 }}>
+          {filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <Box key={index} sx={{ marginBottom: 2 }}>
+                <Typography variant="body1">{item.job_title}</Typography>
+                <Typography variant="body2">Gender: {item.gender}</Typography>
+                <Typography variant="body3" color="textSecondary">Income Year: {item.income_year} </Typography>
+                <Typography variant="body3" color="textSecondary">Zip Code: {item.zip_code ? item.zip_code : 'N/A'}</Typography>
+              </Box>
+            ))
+          ) : (
+            <Typography variant="body1">No results found</Typography>
+          )}
+        </Box>
       </Box>
     </Box>
   );
 }
-
