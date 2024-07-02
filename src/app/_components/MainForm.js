@@ -75,7 +75,7 @@ const MainForm = () => {
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="150" width="150" alt="Scale" />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" />
         </div>
         <label htmlFor="job_title" className="label">
           JOB NAME
@@ -182,10 +182,11 @@ const MainForm = () => {
           onKeyPress={preventMinus}
 
         />
-      <Box sx={{display: "flex",
+      <Box className="buttonBox"
+      sx={{display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexDirection: "column",
+            flexDirection: "row",
             marginTop: "15px"}}>
       <Button
           type="submit"
