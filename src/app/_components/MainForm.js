@@ -84,7 +84,7 @@ const MainForm = () => {
           freeSolo
           id="job_title"
           options={filteredOptions.map((option) => option.job_title)}
-          value={formData.job_title}
+          value={initialFormData.job_title}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
@@ -107,7 +107,7 @@ const MainForm = () => {
           id="zip_code"
           name="zip_code"
           placeholder="Zip Code"
-          value={formData.zip_code}
+          value={initialFormData.zip_code}
           onChange={handleChange}
           className="input"
           variant="outlined"
@@ -175,7 +175,7 @@ const MainForm = () => {
           id="income_year"
           name="income_year"
           placeholder="Years of Experience"
-          value={formData.years_exp}
+          value={initialFormData.years_exp}
           onChange={handleChange}
           className="input"
           variant="outlined"

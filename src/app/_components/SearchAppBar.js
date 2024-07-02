@@ -1,6 +1,7 @@
 'use client'
 
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -57,6 +58,36 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/data.json');
+        setData(response.data);
+        setFilteredData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    filterData(value);
+  };
+
+  const filterData = (value) => {
+    const filtered = data.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
 
   const headerLogo =  
   <a href='http://localhost:3000/'><Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0} zIndex={9}/> </a> 
@@ -65,15 +96,6 @@ export default function SearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          > */}
-            {/* <MenuIcon /> */}
-          {/* </IconButton> */}
           <Typography
             variant="h6"
             noWrap
@@ -89,10 +111,23 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
           </Search>
         </Toolbar>
       </AppBar>
+      <Box sx={{ padding: 2 }}>
+        {filteredData.length > 0 ? (
+          filteredData.map((item, index) => (
+            <Typography key={index} variant="body1">
+              {item.name}
+            </Typography>
+          ))
+        ) : (
+          <Typography variant="body1">No results found</Typography>
+        )}
+      </Box>
     </Box>
   );
 }
