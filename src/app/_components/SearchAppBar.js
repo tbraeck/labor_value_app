@@ -126,23 +126,23 @@ export default function SearchAppBar() {
           {/* Other content can go here */}
         </Box>
         <Box sx={{ flex: -1, paddingRight: 6, paddingTop: 4 }}>
-  {searchTerm ? (
-    filteredData.length > 0 ? (
-      filteredData.map((item, index) => (
-        <Box key={index} sx={{ marginBottom: 2 }}>
-          <Typography variant="body1">{item.job_title}</Typography>
-          <Typography variant="body2">Gender: {item.gender}</Typography>
-          <Typography variant="body2" color="textSecondary">Income Year: {item.income_year}</Typography>
-          <Typography variant="body2" color="textSecondary">Zip Code: {item.zip_code ? item.zip_code : 'N/A'}</Typography>
-        </Box>
-      ))
-    ) : (
-      <Typography variant="body1">No results found</Typography>
-    )
-  ) : (
-    <Typography variant="body1">Please enter a search term</Typography>
-  )}
-</Box>
+        {searchTerm ? (
+          filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <Box key={index} sx={{ marginBottom: 2 }}>
+                <Typography variant="body1">{item.job_title}</Typography>
+                <Typography variant="body2">Gender: {item.gender}</Typography>
+                <Typography variant="body2" color="textSecondary">Income Year: {item.income_year}</Typography>
+                <Typography variant="body2" color="textSecondary">Zip Code: {item.zip_code ? item.zip_code : 'N/A'}</Typography>
+              </Box>
+            ))
+          ) : (
+            <Typography variant="body1">No results found</Typography>
+          )
+        ) : (
+          <Typography variant="body1">Please enter a search term</Typography>
+        )}
+      </Box>
 
       </Box>
     </Box>
