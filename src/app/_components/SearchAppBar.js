@@ -108,7 +108,7 @@ export default function SearchAppBar() {
           >
             {headerLogo}
           </Typography>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -118,7 +118,7 @@ export default function SearchAppBar() {
               value={searchTerm}
               onChange={handleSearchChange}
             />
-          </Search>
+          </Search> */}
         </Toolbar>
       </AppBar>
       <Box sx={{ display: 'flex' }}>

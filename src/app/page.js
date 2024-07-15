@@ -4,7 +4,7 @@ import Head from "next/head";
 import Box from '@mui/material/Box';
 import MainForm from './_components/MainForm';
 // import DataTable from './_components/DataTable';
-import DataTable2 from './_components/DataTable2';
+import DataTable2 from './_components/DataTable3';
 import Image from 'next/image';
 
 import './styles/globals.css';
