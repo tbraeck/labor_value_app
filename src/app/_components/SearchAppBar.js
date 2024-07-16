@@ -125,7 +125,7 @@ export default function SearchAppBar() {
         <Box sx={{ flex: 1, padding: 2 }}>
           {/* Other content can go here */}
         </Box>
-        <Box sx={{ flex: -1, paddingRight: 6, paddingTop: 4 }}>
+        {/* <Box sx={{ flex: -1, paddingRight: 6, paddingTop: 4 }}>
         {searchTerm ? (
           filteredData.length > 0 ? (
             filteredData.map((item, index) => (
@@ -142,7 +142,7 @@ export default function SearchAppBar() {
         ) : (
           <Typography variant="body1">Please enter a search term</Typography>
         )}
-      </Box>
+      </Box> */}
 
       </Box>
     </Box>

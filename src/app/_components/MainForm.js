@@ -45,7 +45,7 @@ const MainForm = () => {
 
   const handleReset = (e) => {
     e.preventDefault();
-    setFormData(  );
+    setFormData( );
     setFilteredOptions(jobOptions);
   };
 
@@ -75,7 +75,7 @@ const MainForm = () => {
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" style={{ zIndex: 1 }} />
         </div>
         <label htmlFor="job_title" className="label">
           JOB NAME
@@ -84,7 +84,7 @@ const MainForm = () => {
           freeSolo
           id="job_title"
           options={filteredOptions.map((option) => option.job_title)}
-          value={initialFormData.job_title}
+          value={formData.job_title}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
@@ -107,7 +107,7 @@ const MainForm = () => {
           id="zip_code"
           name="zip_code"
           placeholder="Zip Code"
-          value={initialFormData.zip_code}
+          value={formData.zip_code}
           onChange={handleChange}
           className="input"
           variant="outlined"
@@ -175,7 +175,7 @@ const MainForm = () => {
           id="income_year"
           name="income_year"
           placeholder="Years of Experience"
-          value={initialFormData.years_exp}
+          value={formData.years_exp}
           onChange={handleChange}
           className="input"
           variant="outlined"
