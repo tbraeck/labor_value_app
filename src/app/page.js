@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchAppBar from "./_components/SearchAppBar";
-import Head from "next/head";
+// import Head from "next/head";
 import Box from '@mui/material/Box';
 import MainForm from './_components/MainForm';
 // import DataTable from './_components/DataTable';
@@ -13,9 +13,9 @@ export default function Home() {
   return (
     
     <div className="background-container">
-       <Head>
+       {/* <Head>
             <link rel="shortcut icon" href="/LOGO.ico" />
-        </Head>
+        </Head> */}
       <Box className="relative z-10 w-full top-bar">
         <SearchAppBar 
         />
