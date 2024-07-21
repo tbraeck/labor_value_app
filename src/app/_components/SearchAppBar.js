@@ -92,7 +92,7 @@ export default function SearchAppBar() {
 
   const headerLogo = (
     <a href='http://localhost:3000/'>
-      <Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0} zIndex={9} />
+      <Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0}  />
     </a>
   );
 

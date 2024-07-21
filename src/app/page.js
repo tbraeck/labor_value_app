@@ -6,6 +6,7 @@ import MainForm from './_components/MainForm';
 // import DataTable from './_components/DataTable';
 import DataTable2 from './_components/DataTable3';
 import Image from 'next/image';
+import TextField from '@mui/material/TextField';
 
 import './styles/globals.css';
 
@@ -20,9 +21,11 @@ export default function Home() {
         <SearchAppBar 
         />
       </Box>
+      
       <Box className="flex direction-column justify-center items-center">
         <MainForm/>
       </Box>
+      
       {/* <Box>
         <DataTable className="flex direction-column justify-center items-center"/>
       </Box> */}

@@ -28,8 +28,8 @@ const MainForm = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        const sortedJobs = data.sort((a, b) => a.job_title.localeCompare(b.job_title));
+        const jobsWithIds = data.map((job, index) => ({ ...job, unique_id: `${job.job_title}_${index}` }));
+        const sortedJobs = jobsWithIds.sort((a, b) => a.job_title.localeCompare(b.job_title));
         setJobOptions(sortedJobs);
         setFilteredOptions(sortedJobs);
       })
@@ -45,7 +45,7 @@ const MainForm = () => {
 
   const handleReset = (e) => {
     e.preventDefault();
-    setFormData( );
+    setFormData(initialFormData);
     setFilteredOptions(jobOptions);
   };
 
@@ -64,18 +64,18 @@ const MainForm = () => {
     e.preventDefault();
     console.log(formData);
   };
+
   const preventMinus = (e) => {
     if (e.code === 'Minus') {
-        e.preventDefault();
+      e.preventDefault();
     }
-};
-
+  };
 
   return (
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" style={{ zIndex: 1 }} />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
         </div>
         <label htmlFor="job_title" className="label">
           JOB NAME
@@ -113,57 +113,38 @@ const MainForm = () => {
           variant="outlined"
         />
 
-        {/* <label htmlFor="gender" className="label">
-          GENDER
-        </label> */}
-        <Box sx={{justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px"}}>
-        <label>
-        <input
-          type="radio"
-          name="gender"
-          value="male"
-          // checked={state.gender === "male"}
-          defaultChecked
-          onChange={handleChange}
-        />{" "}
-        Male
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="gender"
-          value="female"
-          // checked={gender === "female"}
-          onChange={handleChange}
-        />{" "}
-        Female
-      </label>
-      <label >
-        <input
-          type="radio"
-          name="gender"
-          value="non-binary"
-          // checked={state.gender === "male"}
-          onChange={handleChange}
-        />{" "}
-        Non-Binary
-      </label>
-
-
+        <Box sx={{ justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px" }}>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={formData.gender === "male"}
+              onChange={handleChange}
+            />{" "}
+            Male
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={formData.gender === "female"}
+              onChange={handleChange}
+            />{" "}
+            Female
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="non-binary"
+              checked={formData.gender === "non-binary"}
+              onChange={handleChange}
+            />{" "}
+            Non-Binary
+          </label>
         </Box>
-        
-        {/* <TextField
-          required
-          id="gender"
-          name="gender"
-          type="radio"
-          placeholder="Gender"
-          value={formData.gender}
-          onChange={handleChange}
-          className="radio-inline"
-          variant="outlined"
-          
-        /> */}
 
         <label htmlFor="income_year" className="label">
           YEARS OF EXPERIENCE
@@ -175,56 +156,56 @@ const MainForm = () => {
           id="income_year"
           name="income_year"
           placeholder="Years of Experience"
-          value={formData.years_exp}
+          value={formData.income_year}
           onChange={handleChange}
           className="input"
           variant="outlined"
           onKeyPress={preventMinus}
-
         />
-      <Box className="buttonBox"
-      sx={{display: "flex",
+
+        <Box
+          className="buttonBox"
+          sx={{
+            display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "row",
-            marginTop: "15px"}}>
-      <Button
-          type="submit"
-          onSubmit={handleSubmit}
-          className="button"
-          variant="contained"
-          color="primary"
-          sx={{
-            borderRadius: "5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            margin: "10px"
+            marginTop: "15px"
           }}
         >
-          Submit
-        </Button>
-        <Button
-          type="reset"
-          onClick={handleReset}
-          className="button"
-          variant="outlined"
-          color="secondary"
-          sx={{
-            borderRadius: "5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column"
-
-          }}
-        >
-          Reset
-        </Button>
-
-      </Box>
-       
+          <Button
+            type="submit"
+            className="button"
+            variant="contained"
+            color="primary"
+            sx={{
+              borderRadius: "5px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              margin: "10px"
+            }}
+          >
+            Submit
+          </Button>
+          <Button
+            type="reset"
+            onClick={handleReset}
+            className="button"
+            variant="outlined"
+            color="secondary"
+            sx={{
+              borderRadius: "5px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column"
+            }}
+          >
+            Reset
+          </Button>
+        </Box>
       </form>
     </Box>
   );
