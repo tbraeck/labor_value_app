@@ -20,7 +20,7 @@ const MainForm = () => {
   const [filteredOptions, setFilteredOptions] = useState([]);
 
   useEffect(() => {
-    fetch('./data.json')
+    fetch('/api/bls')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -28,7 +28,13 @@ const MainForm = () => {
         return response.json();
       })
       .then((data) => {
-        const jobsWithIds = data.map((job, index) => ({ ...job, unique_id: `${job.job_title}_${index}` }));
+        console.log(data);
+
+        // Assuming the API returns an array of jobs
+        const jobsWithIds = data.Results.series[0].data.map((job, index) => ({
+          job_title: `Job ${index + 1}`, // Replace with actual job title if available
+          unique_id: `${job.year}_${index}`
+        }));
         const sortedJobs = jobsWithIds.sort((a, b) => a.job_title.localeCompare(b.job_title));
         setJobOptions(sortedJobs);
         setFilteredOptions(sortedJobs);
