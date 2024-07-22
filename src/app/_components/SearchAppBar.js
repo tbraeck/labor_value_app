@@ -160,7 +160,7 @@ function SearchAppBar(props) {
     setMobileOpen((prevState) => !prevState);
   };
   const headerLogo = (
-        <a href='http://localhost:3000/'>
+        <a href='http://localhost:3000/' padding={0} margin={0}>
           <Image src="/value2.png" alt='Logo' width={100} height={100} padding={0} margin={0}  />
         </a>
       );

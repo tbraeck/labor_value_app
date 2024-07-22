@@ -4,8 +4,9 @@ import React, { useState, useEffect } from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Box } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 import Image from "next/image";
+import { useTheme } from '@mui/material/styles';
 
 const MainForm = () => {
   const initialFormData = {
@@ -17,6 +18,35 @@ const MainForm = () => {
     income_year: ""
   };
 
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const names = [
+    'Oliver Hansen', 'Van Henry', 'April Tucker', 'Ralph Hubbard',
+    'Omar Alexander', 'Carlos Abbott', 'Miriam Wagner', 'Bradley Wilkerson',
+    'Virginia Andrews', 'Kelly Snyder',
+  ];
+
+  const theme = useTheme();
+  const [personName, setPersonName] = useState([]);
+
+  const getStyles = (name, personName) => ({
+    fontWeight: personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+  });
+
+  const handleSelectChange = (event) => {
+    const { value } = event.target;
+    setPersonName(typeof value === 'string' ? value.split(',') : value);
+  };
+
   const [formData, setFormData] = useState(initialFormData);
   const [jobOptions, setJobOptions] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -24,15 +54,10 @@ const MainForm = () => {
   useEffect(() => {
     fetch('/api/bls')
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-
-        // Assuming the API returns an array of jobs
         const jobsWithIds = data.Results.series[0].data.map((job, index) => ({
           job_title: `Job ${index + 1}`, // Replace with actual job title if available
           unique_id: `${job.year}_${index}`
@@ -41,9 +66,7 @@ const MainForm = () => {
         setJobOptions(sortedJobs);
         setFilteredOptions(sortedJobs);
       })
-      .catch((error) => {
-        console.error("Error fetching job data:", error);
-      });
+      .catch((error) => console.error("Error fetching job data:", error));
   }, []);
 
   const handleChange = (e) => {
@@ -74,20 +97,16 @@ const MainForm = () => {
   };
 
   const preventMinus = (e) => {
-    if (e.code === 'Minus') {
-      e.preventDefault();
-    }
+    if (e.code === 'Minus') e.preventDefault();
   };
 
   return (
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized />
         </div>
-        <label htmlFor="job_title" className="label">
-          JOB NAME
-        </label>
+        <label htmlFor="job_title" className="label">JOB NAME</label>
         <Autocomplete
           freeSolo
           id="job_title"
@@ -107,9 +126,7 @@ const MainForm = () => {
           )}
         />
 
-        <label htmlFor="zip_code" className="label">
-          ZIP CODE
-        </label>
+        <label htmlFor="zip_code" className="label">ZIP CODE</label>
         <TextField
           required
           id="zip_code"
@@ -121,7 +138,7 @@ const MainForm = () => {
           variant="outlined"
         />
 
-        <Box sx={{ justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", marginTop: "15px" }}>
           <label>
             <input
               type="radio"
@@ -129,8 +146,7 @@ const MainForm = () => {
               value="male"
               checked={formData.gender === "male"}
               onChange={handleChange}
-            />{" "}
-            Male
+            /> Male
           </label>
           <label>
             <input
@@ -139,8 +155,7 @@ const MainForm = () => {
               value="female"
               checked={formData.gender === "female"}
               onChange={handleChange}
-            />{" "}
-            Female
+            /> Female
           </label>
           <label>
             <input
@@ -149,59 +164,47 @@ const MainForm = () => {
               value="non-binary"
               checked={formData.gender === "non-binary"}
               onChange={handleChange}
-            />{" "}
-            Non-Binary
+            /> Non-Binary
           </label>
         </Box>
 
-        <label htmlFor="age" className="label">
-          AGE
-        </label>
-        <TextField
-          required
-          type="text"
-          min="0"
-          id="age"
-          name="age"
-          placeholder="0"
-          value={formData.age}
-          onChange={handleChange}
-          className="input"
-          variant="outlined"
-          maxLength="100"
-          minLength="0"
-          onKeyPress={preventMinus}
-          
-        />
-
-      <label htmlFor="race_ethnicity " className="label">
-          RACE | ETHNICITY
-        </label>
+        <label htmlFor="age" className="label">AGE</label>
         <TextField
           required
           type="number"
           min="0"
-          id="income_year"
-          name="income_year"
-          placeholder="Years of Experience"
-          value={formData.income_year}
+          id="age"
+          name="age"
+          placeholder="201"
+          value={formData.age}
           onChange={handleChange}
           className="input"
           variant="outlined"
           onKeyPress={preventMinus}
         />
-        {/* <select id="age" name="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="fiat">Fiat</option>
-  <option value="audi">Audi</option>
-</select>
-        /> */}
 
+        <Box>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+            <Select
+              labelId="demo-multiple-name-label"
+              id="demo-multiple-name"
+              multiple
+              value={personName}
+              onChange={handleSelectChange}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name} style={getStyles(name, personName)}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
 
-        <label htmlFor="income_year" className="label">
-          YEARS OF EXPERIENCE
-        </label>
+        <label htmlFor="income_year" className="label">YEARS OF EXPERIENCE</label>
         <TextField
           required
           type="number"
