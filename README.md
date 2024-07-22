@@ -34,3 +34,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+**ValueMe App Goals:
+**
+1. Create an app that anyone can access to search occupations given wage value based on input values from user (occupation, zip code, gender, age, race/ ethnicity, experience)
+2. App will also show what that occupation should be valued at based on multiple factors (calculated value of labor versus overall profit of company, historic wage growth versus inflation, historic wage inequalities [CEO vs average earners wage discrepencies], etc)
+3. Main search form will be geared towards occupations in for-profit companies. Alternative search can be created for not or non-profit companies and occupations therein. This is meaningful because wage discrepancies in these other sectors have different reasons and different solutions.
+4. Who is this product being "sold" to?
+5. What is the use of this product? What will clients use this product for?
+6. What problem is this product solving?
+7. What features will this app have? (Main page - header, logo, valueMe button -> main search form, Main Search Form -> input values then hit submit or reset -> searches BLS API and data.json or alternative API's to show client the "as it is now" data pertaining to the searched occupation within the search boundaries or their input && will show "what your value is" or the actual calculated value of their labor and time based on the factors listed above.
+8. Alternative search idea (non-profit occupations): Search criteria can be the same or similar but calulation of value will be trickier, as many occupations in this sector do not have an immediate revenue outcome **EX: Teachers, fire fighters, police, other government workers, etc.**
