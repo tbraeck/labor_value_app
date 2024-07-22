@@ -9,6 +9,7 @@ import Image from 'next/image';
 import TextField from '@mui/material/TextField';
 
 import './styles/globals.css';
+import { Button } from '@mui/material';
 
 export default function Home() {
   return (
@@ -21,10 +22,36 @@ export default function Home() {
         <SearchAppBar 
         />
       </Box>
-      
-      <Box className="flex direction-column justify-center items-center">
+      <Box
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+      }}
+    >
+      <Button
+        variant="contained"
+        sx={{
+          height: '70px',
+          width: '200px',
+          fontSize: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        VALUE~ME
+      </Button>
+    </Box>
+      {/* <Box className="flex direction-column justify-center items-center">
         <MainForm/>
-      </Box>
+      </Box> */}
       
       {/* <Box>
         <DataTable className="flex direction-column justify-center items-center"/>
