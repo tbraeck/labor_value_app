@@ -7,7 +7,7 @@ import MainForm from './_components/MainForm';
 import DataTable2 from './_components/DataTable3';
 import Image from 'next/image';
 import TextField from '@mui/material/TextField';
-
+import Link from 'next/link';
 import './styles/globals.css';
 import { Button } from '@mui/material';
 
@@ -22,6 +22,7 @@ export default function Home() {
         <SearchAppBar 
         />
       </Box>
+      <Link href='/mainform'>
       <Box
       sx={{
         position: 'absolute',
@@ -35,6 +36,7 @@ export default function Home() {
         width: '100vw',
       }}
     >
+     
       <Button
         variant="contained"
         sx={{
@@ -49,6 +51,8 @@ export default function Home() {
         VALUE~ME
       </Button>
     </Box>
+    </Link>
+
       {/* <Box className="flex direction-column justify-center items-center">
         <MainForm/>
       </Box> */}
