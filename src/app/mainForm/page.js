@@ -174,17 +174,17 @@ const MainForm = () => {
           
         />
 
-      <label htmlFor="race_ethnicity " className="label">
+      <label htmlFor="race_ethnicity" className="label">
           RACE | ETHNICITY
         </label>
         <TextField
           required
           type="number"
           min="0"
-          id="income_year"
-          name="income_year"
-          placeholder="Years of Experience"
-          value={formData.income_year}
+          id="race_ethnicity"
+          name="race_ethnicity"
+          placeholder="Race or ethnicity?"
+          value={formData.race_ethnicity}
           onChange={handleChange}
           className="input"
           variant="outlined"
@@ -240,9 +240,9 @@ const MainForm = () => {
               margin: "10px"
             }}
           >
-            Submit
+            ValueME
           </Button>
-          <Button
+          {/* {/* <Button
             type="reset"
             onClick={handleReset}
             className="button"
@@ -257,8 +257,8 @@ const MainForm = () => {
             }}
           >
             Reset
-          </Button>
-        </Box>
+          </Button> */}
+        </Box> 
       </form>
     </Box>
   );
