@@ -91,8 +91,9 @@ const MainForm = () => {
         <Autocomplete
           freeSolo
           id="job_title"
+          value={formData.job_Title}
+          className="autocomplete"
           options={filteredOptions.map((option) => option.job_title)}
-          value={formData.job_title}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
@@ -101,7 +102,7 @@ const MainForm = () => {
               name="job_title"
               variant="outlined"
               placeholder="Laborer"
-              className="input"
+              // className="input"
               onChange={handleChange}
             />
           )}
