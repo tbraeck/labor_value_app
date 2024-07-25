@@ -22,19 +22,19 @@ export default function Home() {
       </Box>
      
       <Box
-      sx={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width: '100vw',
-      }}
-    >
-       <Link href='/mainform' passHref>
+  sx={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    width: '100vw',
+  }}
+>
+  <Link href='/mainform' passHref>
     <Button
       variant="contained"
       sx={{
@@ -49,19 +49,7 @@ export default function Home() {
       VALUE~ME
     </Button>
   </Link>
-    </Box>
-   
-
-      {/* <Box className="flex direction-column justify-center items-center">
-        <MainForm/>
-      </Box> */}
-      
-      {/* <Box>
-        <DataTable className="flex direction-column justify-center items-center"/>
-      </Box> */}
-      {/* <Box>
-        <DataTable2/>
-      </Box> */}
+</Box>
     </div>
   );
 }
