@@ -25,7 +25,7 @@ const navItems = [
   { text: 'Home', link: '/' },
   { text: 'About', link: '/about' },
   { text: 'Contact', link: '/contact' },
-  // Add more items as needed
+  { text: 'Products', link: '/products' }
 ];
 
 function SearchAppBar(props) {
@@ -37,9 +37,9 @@ function SearchAppBar(props) {
   };
 
   const headerLogo = (
-    <a href='http://localhost:3000/' style={{ padding: 0, margin: 0 }}>
-      <Image src="/value2.png" alt='Logo' width={100} height={100} />
-    </a>
+    <Link href='http://localhost:3000/' passHref>
+      <Image src="/value2.png" alt='Logo' width={100} height={100} style={{ padding: 0, margin: 0 }} />
+    </Link>
   );
 
   const drawer = (
@@ -88,11 +88,11 @@ function SearchAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item.text} sx={{ color: '#fff' }}>
-                <Link href={item.link} passHref>
+              <Link key={item.text} href={item.link} passHref>
+                <Button sx={{ color: '#fff' }}>
                   {item.text}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
