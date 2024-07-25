@@ -25,7 +25,6 @@ const navItems = [
   { text: 'Home', link: '/' },
   { text: 'About', link: '/about' },
   { text: 'Contact', link: '/contact' },
-  { text: 'Products', link: '/products' }
 ];
 
 function SearchAppBar(props) {

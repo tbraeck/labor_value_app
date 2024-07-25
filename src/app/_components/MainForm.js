@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 import Image from "next/image";
 import { useTheme } from '@mui/material/styles';
+import Link from "next/link";
 
 const MainForm = () => {
   const initialFormData = {
@@ -101,6 +102,7 @@ const MainForm = () => {
   };
 
   return (
+    <Box>
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
@@ -263,6 +265,11 @@ const MainForm = () => {
           </Button>
         </Box>
       </form>
+    </Box>
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: '16px', position: 'absolute', right: 0, top: 0 }}>
+          <Link to='/'><Button variant='contained'>HOME</Button></Link>
+
+      </Box>
     </Box>
   );
 };

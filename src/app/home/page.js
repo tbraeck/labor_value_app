@@ -16,14 +16,11 @@ export default function Home() {
   return (
     
     <div className="background-container">
-       {/* <Head>
-            <link rel="shortcut icon" href="/LOGO.ico" />
-        </Head> */}
       <Box className="relative z-10 w-full top-bar">
         <SearchAppBar 
         />
       </Box>
-      <Link href='/mainform'>
+     
       <Box
       sx={{
         position: 'absolute',
@@ -37,22 +34,23 @@ export default function Home() {
         width: '100vw',
       }}
     >
-     
-      <Button
-        variant="contained"
-        sx={{
-          height: '70px',
-          width: '200px',
-          fontSize: '20px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        VALUE~ME
-      </Button>
+       <Link href='/mainform' passHref>
+    <Button
+      variant="contained"
+      sx={{
+        height: '70px',
+        width: '200px',
+        fontSize: '20px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      VALUE~ME
+    </Button>
+  </Link>
     </Box>
-    </Link>
+   
 
       {/* <Box className="flex direction-column justify-center items-center">
         <MainForm/>
