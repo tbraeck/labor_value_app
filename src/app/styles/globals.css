@@ -82,10 +82,7 @@ body {
   width: 100%;
 }
 
-/* form.module.css */
 .container {
-  /* border-radius: 60px; 
-   */
    height: "100%";
   filter: drop-shadow(0 0 1rem rgb(88, 89, 90));
   align-items: center;

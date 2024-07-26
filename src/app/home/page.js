@@ -30,16 +30,15 @@ export default function Home() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
+   
   }}
 >
-  <Link href='/mainform' passHref>
+  <Link href='/mainform' >
     <Button
       variant="contained"
       sx={{
-        height: '70px',
-        width: '200px',
+        height: '100px',
+        width: '400px',
         fontSize: '20px',
         display: 'flex',
         justifyContent: 'center',
