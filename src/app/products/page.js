@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@mui/material'
 
 const Products = () => {
+    const productId = 100;
   return (
     <>
       <Link href='/' passHref>
@@ -16,7 +17,10 @@ const Products = () => {
         <Link href='products/2'>Product 2</Link>
       </h2>
       <h2>
-        <Link href='products/3'>Product 3</Link>
+        <Link href='products/3' replace>Product 3</Link>
+      </h2>
+      <h2>
+        <Link href={`products/${productId}`}>{productId}</Link>
       </h2>
     </>
   )
