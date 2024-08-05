@@ -1,7 +1,9 @@
 'use client';
 
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -18,7 +20,7 @@ const MainForm = () => {
   const races = [
     'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Other Race', 'White'
   ];
-
+  
   const [formData, setFormData] = useState(initialFormData);
   const [jobOptions, setJobOptions] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -34,9 +36,12 @@ const MainForm = () => {
       .then((data) => {
         console.log(data);
 
-        const jobsWithIds = data.Results.series[0].data.map((job, index) => ({
-          job_title: `Job ${job_title}`,
-          unique_id: `${job.year}_${index}`
+        const jobsWithIds = data.map((job, index) => ({
+          job_title: job.job_title,
+          unique_id: job.id,
+          zip_code: job.zip_code,
+          gender: job.gender,
+          income_year: job.income_year
         }));
         const sortedJobs = jobsWithIds.sort((a, b) => a.job_title.localeCompare(b.job_title));
         setJobOptions(sortedJobs);
@@ -84,14 +89,17 @@ const MainForm = () => {
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
         </div>
-        <label htmlFor="job_title" className="label">JOB NAME</label>
+        <label htmlFor="job_title" className="label">
+          JOB NAME
+        </label>
         <Autocomplete
           freeSolo
           id="job_title"
-          options={filteredOptions.map((option) => option.job_title)}
           value={formData.job_title}
+          className="autocomplete"
+          options={filteredOptions.map((option) => option.job_title)}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
@@ -100,7 +108,6 @@ const MainForm = () => {
               name="job_title"
               variant="outlined"
               placeholder="Laborer"
-              className="input"
               onChange={handleChange}
             />
           )}
@@ -172,23 +179,26 @@ const MainForm = () => {
           onKeyPress={preventMinus}
         />
 
-        <FormControl variant="outlined" className="input" fullWidth>
-          <InputLabel id="race-label">RACE</InputLabel>
-          <Select
-            labelId="race-label"
-            id="race"
-            name="race"
-            value={formData.race}
-            onChange={handleChange}
-            label="RACE"
-          >
-            {races.map((race, index) => (
-              <MenuItem key={index} value={race}>
-                {race}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <label htmlFor="race" className="label">
+          RACE
+        </label>
+        <Autocomplete
+          id="race"
+          options={races}
+          value={formData.race}
+          onChange={(event, newValue) => {
+            setFormData({ ...formData, race: newValue });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              name="race"
+              variant="outlined"
+              placeholder="Select race"
+              onChange={handleChange}
+            />
+          )}
+        />
 
         <label htmlFor="income_year" className="label">
           YEARS OF EXPERIENCE
@@ -233,7 +243,23 @@ const MainForm = () => {
           >
             ValueME
           </Button>
-        </Box> 
+          <Button
+            type="reset"
+            onClick={handleReset}
+            className="button"
+            variant="outlined"
+            color="secondary"
+            sx={{
+              borderRadius: "5px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column"
+            }}
+          >
+            Reset
+          </Button>
+        </Box>
       </form>
     </Box>
   );
