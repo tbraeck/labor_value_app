@@ -5,6 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const MainForm = () => {
@@ -261,6 +262,13 @@ const MainForm = () => {
           </Button>
         </Box>
       </form>
+      <Box>
+      <Link href='/home'>
+      <Button variant='contained'>
+        HOME
+      </Button>
+      </Link>
+      </Box>
     </Box>
   );
 };

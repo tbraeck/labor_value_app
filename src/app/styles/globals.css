@@ -85,10 +85,12 @@ body {
 .container {
    height: "100%";
   filter: drop-shadow(0 0 1rem rgb(88, 89, 90));
-  align-items: center;
-  justify-content: left;
+  /* align-items: center;
+  justify-content: left; */
   /* display: flex; */
   /* margin-top: 100px; */
+  display: flex;
+  flex-direction: row;
  
 }
 
