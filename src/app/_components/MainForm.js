@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
-import Image from "next/image";
+import Autocomplete from '@mui/material/Autocomplete';
+import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const MainForm = () => {
   const initialFormData = {
@@ -15,7 +15,7 @@ const MainForm = () => {
     zip_code: "",
     gender: "",
     age: "",
-    race_ethnicity: "",
+    race: "",
     income_year: ""
   };
 
@@ -34,6 +34,11 @@ const MainForm = () => {
     'Oliver Hansen', 'Van Henry', 'April Tucker', 'Ralph Hubbard',
     'Omar Alexander', 'Carlos Abbott', 'Miriam Wagner', 'Bradley Wilkerson',
     'Virginia Andrews', 'Kelly Snyder',
+  ];
+
+
+  const races = [
+    'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Other Race', 'White'
   ];
 
   const theme = useTheme();

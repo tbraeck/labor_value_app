@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { Box } from "@mui/material";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const MainForm = () => {
   const initialFormData = {
@@ -13,16 +11,20 @@ const MainForm = () => {
     zip_code: "",
     gender: "",
     age: "",
-    race_ethnicity: "",
+    race: "",
     income_year: ""
   };
+
+  const races = [
+    'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Other Race', 'White'
+  ];
 
   const [formData, setFormData] = useState(initialFormData);
   const [jobOptions, setJobOptions] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
 
   useEffect(() => {
-    fetch('/api/bls')
+    fetch('/data.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -32,9 +34,8 @@ const MainForm = () => {
       .then((data) => {
         console.log(data);
 
-        // Assuming the API returns an array of jobs
         const jobsWithIds = data.Results.series[0].data.map((job, index) => ({
-          job_title: `Job ${index + 1}`, // Replace with actual job title if available
+          job_title: `Job ${job_title}`,
           unique_id: `${job.year}_${index}`
         }));
         const sortedJobs = jobsWithIds.sort((a, b) => a.job_title.localeCompare(b.job_title));
@@ -83,17 +84,14 @@ const MainForm = () => {
     <Box className="container">
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized />
         </div>
-        <label htmlFor="job_title" className="label">
-          JOB NAME
-        </label>
+        <label htmlFor="job_title" className="label">JOB NAME</label>
         <Autocomplete
           freeSolo
           id="job_title"
-          value={formData.job_Title}
-          className="autocomplete"
           options={filteredOptions.map((option) => option.job_title)}
+          value={formData.job_title}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
@@ -102,7 +100,7 @@ const MainForm = () => {
               name="job_title"
               variant="outlined"
               placeholder="Laborer"
-              // className="input"
+              className="input"
               onChange={handleChange}
             />
           )}
@@ -172,33 +170,25 @@ const MainForm = () => {
           maxLength="100"
           minLength="0"
           onKeyPress={preventMinus}
-          
         />
 
-      <label htmlFor="race_ethnicity" className="label">
-          RACE | ETHNICITY
-        </label>
-        <TextField
-          required
-          type="number"
-          min="0"
-          id="race_ethnicity"
-          name="race_ethnicity"
-          placeholder="Race or ethnicity?"
-          value={formData.race_ethnicity}
-          onChange={handleChange}
-          className="input"
-          variant="outlined"
-          onKeyPress={preventMinus}
-        />
-        {/* <select id="age" name="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="fiat">Fiat</option>
-  <option value="audi">Audi</option>
-</select>
-        /> */}
-
+        <FormControl variant="outlined" className="input" fullWidth>
+          <InputLabel id="race-label">RACE</InputLabel>
+          <Select
+            labelId="race-label"
+            id="race"
+            name="race"
+            value={formData.race}
+            onChange={handleChange}
+            label="RACE"
+          >
+            {races.map((race, index) => (
+              <MenuItem key={index} value={race}>
+                {race}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <label htmlFor="income_year" className="label">
           YEARS OF EXPERIENCE
@@ -243,22 +233,6 @@ const MainForm = () => {
           >
             ValueME
           </Button>
-          {/* {/* <Button
-            type="reset"
-            onClick={handleReset}
-            className="button"
-            variant="outlined"
-            color="secondary"
-            sx={{
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column"
-            }}
-          >
-            Reset
-          </Button> */}
         </Box> 
       </form>
     </Box>
