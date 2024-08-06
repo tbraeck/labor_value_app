@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -12,12 +12,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const drawerWidth = 240;
 
@@ -25,7 +25,7 @@ const navItems = [
   { text: 'Home', link: '/' },
   { text: 'About', link: '/about' },
   { text: 'Contact', link: '/contact' },
-  { text: 'Products', link: '/products' },
+  // { text: 'Products', link: '/products' },
 ];
 
 function SearchAppBar(props) {

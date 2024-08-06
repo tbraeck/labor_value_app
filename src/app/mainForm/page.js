@@ -44,7 +44,11 @@ const MainForm = () => {
           gender: job.gender,
           income_year: job.income_year
         }));
-        const sortedJobs = jobsWithIds.sort((a, b) => a.job_title.localeCompare(b.job_title));
+
+        // Filter unique job titles
+        const uniqueJobTitles = [...new Set(jobsWithIds.map(job => job.job_title))];
+        const sortedJobs = uniqueJobTitles.sort((a, b) => a.localeCompare(b));
+        
         setJobOptions(sortedJobs);
         setFilteredOptions(sortedJobs);
       })
@@ -70,7 +74,7 @@ const MainForm = () => {
 
   const handleInputChange = (event, value) => {
     const filtered = jobOptions.filter(option =>
-      option.job_title.toLowerCase().includes(value.toLowerCase())
+      option.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredOptions(filtered);
   };
@@ -100,7 +104,7 @@ const MainForm = () => {
           id="job_title"
           value={formData.job_title}
           className="autocomplete"
-          options={filteredOptions.map((option) => option.job_title)}
+          options={filteredOptions}
           onChange={handleAutocompleteChange}
           onInputChange={handleInputChange}
           renderInput={(params) => (
