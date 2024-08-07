@@ -1,19 +1,16 @@
 'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { Button, Typography, Box} from '@mui/material'
-import { styled,  } from '@mui/material/styles';
-
+import { Box, Typography } from '@mui/material';
+import Header from '../Header';
 
 const About = () => {
   return (
-    <div>
-      <Link href='/home'>
-      <Button variant='contained'>
-        HOME
-      </Button>
-      </Link>
+    <Box className='flex justify-center flex-col  '>
+      <Box>
+        <Header></Header>
+      </Box>
+      
+      
       <Box>
       <Typography variant='contained'>
         ABOUT
@@ -23,7 +20,7 @@ const About = () => {
       </Typography>
       </Box>
       
-    </div>
+    </Box>
   )
 }
 

@@ -92,6 +92,7 @@ const MainForm = () => {
 
   return (
     <Box className="container">
+      
       <form className="form" onSubmit={handleSubmit}>
         <div className="formImg">
           <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
