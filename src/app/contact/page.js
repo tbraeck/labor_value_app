@@ -1,16 +1,11 @@
-import React from 'react'
-import Link from 'next/link'
-import { Button } from '@mui/material'
-import Box from '@mui/material'
-
+import { Box } from "@mui/material"
+import Header from "../Header"
 const Contact = () => {
   return (
-    <div>
-      <Link href='/home'>
-      <Button variant='contained'>
-        HOME
-      </Button>
-      </Link>
+    <Box>
+      <Box>
+        <Header></Header>
+      </Box>
 
     <form className="contactCont">
       <h1>Get in touch</h1>
@@ -66,7 +61,7 @@ const Contact = () => {
     </form>
 
 
-    </div>
+    </Box>
   )
 }
 

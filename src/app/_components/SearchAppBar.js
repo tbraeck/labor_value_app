@@ -19,10 +19,10 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
-const drawerWidth = 240;
+const drawerWidth = 140;
 
 const navItems = [
-  { text: 'Home', link: '/' },
+  { text: 'Home', link: '/home' },
   { text: 'About', link: '/about' },
   { text: 'Contact', link: '/contact' },
   // { text: 'Products', link: '/products' },
@@ -37,7 +37,7 @@ function SearchAppBar(props) {
   };
 
   const headerLogo = (
-    <Link href='http://localhost:3000/' passHref>
+    <Link href='http://localhost:3000/home' passHref>
       <Image src="/value2.png" alt='Logo' width={100} height={100} style={{ padding: 0, margin: 0 }} />
     </Link>
   );
@@ -65,9 +65,9 @@ function SearchAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className='bg-[#24a0ed]'>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav"  >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -89,7 +89,7 @@ function SearchAppBar(props) {
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Link key={item.text} href={item.link} passHref>
-                <Button variant="outlined" sx={{ color: '#fff' }}>
+                <Button variant="outlined" sx={{ color: '#fff', bg: "#24a0ed" }}>
                   {item.text}
                 </Button>
               </Link>

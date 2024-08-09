@@ -13,8 +13,7 @@ export default function Home() {
     
     <div className="background-container">
       <Box className="relative z-10 w-full top-bar">
-        <SearchAppBar 
-        />
+        <SearchAppBar />
       </Box>
      
       <Box

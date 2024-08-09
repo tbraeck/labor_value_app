@@ -9,8 +9,6 @@ const About = () => {
       <Box>
         <Header></Header>
       </Box>
-      
-      
       <Box>
       <Typography variant='contained'>
         ABOUT
