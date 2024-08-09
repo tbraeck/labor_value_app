@@ -89,7 +89,7 @@ function SearchAppBar(props) {
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Link key={item.text} href={item.link} passHref>
-                <Button sx={{ color: '#fff' }}>
+                <Button variant="outlined" sx={{ color: '#fff' }}>
                   {item.text}
                 </Button>
               </Link>
