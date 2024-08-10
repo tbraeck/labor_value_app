@@ -5,8 +5,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Header from "../Header";
 
 const MainForm = () => {
   const initialFormData = {
@@ -91,12 +91,11 @@ const MainForm = () => {
   };
 
   return (
-    <Box className="container">
-      
+    <Box >
+      <Box>
+        <Header></Header>
+      </Box>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
-        </div>
         <label htmlFor="job_title" className="label">
           JOB NAME
         </label>
@@ -267,13 +266,9 @@ const MainForm = () => {
           </Button>
         </Box>
       </form>
-      <Box>
-      <Link href='/home'>
-      <Button variant='contained'>
-        HOME
-      </Button>
-      </Link>
-      </Box>
+      <Box className="formImg">
+          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
+        </Box>
     </Box>
   );
 };
