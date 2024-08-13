@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Header from "../Header";
 
@@ -266,9 +265,9 @@ const MainForm = () => {
           </Button>
         </Box>
       </form>
-      <Box className="formImg">
+      {/* <Box className="formImg">
           <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
-        </Box>
+        </Box> */}
     </Box>
   );
 };
