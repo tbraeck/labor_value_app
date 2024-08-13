@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import Header from "../Header"
 const Contact = () => {
   return (
-    <Box>
+    <Box sx={{height: '50%'}}>
       <Box>
         <Header></Header>
       </Box>
