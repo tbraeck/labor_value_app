@@ -25,7 +25,7 @@ export default function Home() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-   
+
   }}
 >
   <Link href='/mainform' >
@@ -38,7 +38,8 @@ export default function Home() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        font: 'montserrat'
+        font: 'montserrat',
+        borderRadius: '20px',
       }}
     >
       <Image src='/VALUE_ME_1.png' width= {300} height={100} alt='valueme'></Image>
