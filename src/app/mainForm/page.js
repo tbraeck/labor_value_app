@@ -24,6 +24,7 @@ const MainForm = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [jobOptions, setJobOptions] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
+  const [searchResults, setSearchResults] = useState(null); // State for search results
 
   useEffect(() => {
     fetch('/data.json')
@@ -36,20 +37,21 @@ const MainForm = () => {
       .then((data) => {
         console.log(data);
 
-        const jobsWithIds = data.map((job, index) => ({
+        const jobsWithIds = data.map((job) => ({
           job_title: job.job_title,
           unique_id: job.id,
           zip_code: job.zip_code,
           gender: job.gender,
-          income_year: job.income_year
+          income_year: job.income_year,
+          wage: job.income_year // Assuming 'wage' is the field name for wage data in JSON
         }));
 
         // Filter unique job titles
         const uniqueJobTitles = [...new Set(jobsWithIds.map(job => job.job_title))];
         const sortedJobs = uniqueJobTitles.sort((a, b) => a.localeCompare(b));
         
-        setJobOptions(sortedJobs);
-        setFilteredOptions(sortedJobs);
+        setJobOptions(jobsWithIds); // Set the full job options, including wage data
+        setFilteredOptions(sortedJobs); // Set the unique job titles for the Autocomplete
       })
       .catch((error) => {
         console.error("Error fetching job data:", error);
@@ -64,7 +66,8 @@ const MainForm = () => {
   const handleReset = (e) => {
     e.preventDefault();
     setFormData(initialFormData);
-    setFilteredOptions(jobOptions);
+    setFilteredOptions(jobOptions.map(job => job.job_title)); // Reset to all job titles
+    setSearchResults(null); // Clear search results on reset
   };
 
   const handleAutocompleteChange = (event, newValue) => {
@@ -72,15 +75,25 @@ const MainForm = () => {
   };
 
   const handleInputChange = (event, value) => {
-    const filtered = jobOptions.filter(option =>
-      option.toLowerCase().includes(value.toLowerCase())
-    );
+    const filtered = jobOptions
+      .map(job => job.job_title)
+      .filter(option => option.toLowerCase().includes(value.toLowerCase()));
     setFilteredOptions(filtered);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const filteredResults = jobOptions.filter((job) => 
+      job.job_title.toLowerCase() === formData.job_title.toLowerCase()
+    );
+
+    if (filteredResults.length > 0) {
+      const { income_year } = filteredResults[0];
+      setSearchResults({ income_year });
+    } else {
+      setSearchResults({ wage: 'No data found for this job title.' });
+    }
   };
 
   const preventMinus = (e) => {
@@ -90,184 +103,196 @@ const MainForm = () => {
   };
 
   return (
-    <Box >
+    <Box className="h-full">
       <Box>
-        <Header></Header>
+        <Header />
       </Box>
-      <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="job_title" className="label">
-          JOB NAME
-        </label>
-        <Autocomplete
-          freeSolo
-          id="job_title"
-          value={formData.job_title}
-          className="autocomplete"
-          options={filteredOptions}
-          onChange={handleAutocompleteChange}
-          onInputChange={handleInputChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              name="job_title"
-              variant="outlined"
-              placeholder="Laborer"
-              onChange={handleChange}
+      <Box display="flex">
+        <Box flex="1">
+          <form className="form" onSubmit={handleSubmit}>
+            <label htmlFor="job_title" className="label">
+              JOB NAME
+            </label>
+            <Autocomplete
+              freeSolo
+              id="job_title"
+              value={formData.job_title}
+              className="autocomplete"
+              options={filteredOptions}
+              onChange={handleAutocompleteChange}
+              onInputChange={handleInputChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="job_title"
+                  variant="outlined"
+                  placeholder="Laborer"
+                  onChange={handleChange}
+                />
+              )}
             />
-          )}
-        />
 
-        <label htmlFor="zip_code" className="label">
-          ZIP CODE
-        </label>
-        <TextField
-          required
-          id="zip_code"
-          name="zip_code"
-          placeholder="Zip Code"
-          value={formData.zip_code}
-          onChange={handleChange}
-          className="input"
-          variant="outlined"
-        />
+            <label htmlFor="zip_code" className="label">
+              ZIP CODE
+            </label>
+            <TextField
+              required
+              id="zip_code"
+              name="zip_code"
+              placeholder="Zip Code"
+              value={formData.zip_code}
+              onChange={handleChange}
+              className="input"
+              variant="outlined"
+            />
 
-        <Box sx={{ justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px" }}>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={formData.gender === "male"}
+            <Box sx={{ justifyContent: "left", alignItems: "left", display: "flex", flexDirection: "column", marginTop: "15px" }}>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  checked={formData.gender === "male"}
+                  onChange={handleChange}
+                />{" "}
+                Male
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  checked={formData.gender === "female"}
+                  onChange={handleChange}
+                />{" "}
+                Female
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="non-binary"
+                  checked={formData.gender === "non-binary"}
+                  onChange={handleChange}
+                />{" "}
+                Non-Binary
+              </label>
+            </Box>
+
+            <label htmlFor="age" className="label">
+              AGE
+            </label>
+            <TextField
+              required
+              type="text"
+              min="0"
+              id="age"
+              name="age"
+              placeholder="0"
+              value={formData.age}
               onChange={handleChange}
-            />{" "}
-            Male
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={formData.gender === "female"}
+              className="input"
+              variant="outlined"
+              maxLength="100"
+              minLength="0"
+              onKeyPress={preventMinus}
+            />
+
+            <label htmlFor="race" className="label">
+              RACE
+            </label>
+            <Autocomplete
+              id="race"
+              options={races}
+              value={formData.race}
+              onChange={(event, newValue) => {
+                setFormData({ ...formData, race: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="race"
+                  variant="outlined"
+                  placeholder="Select race"
+                  onChange={handleChange}
+                />
+              )}
+            />
+
+            <label htmlFor="income_year" className="label">
+              YEARS OF EXPERIENCE
+            </label>
+            <TextField
+              required
+              type="number"
+              min="0"
+              id="income_year"
+              name="income_year"
+              placeholder="Years of Experience"
+              value={formData.income_year}
               onChange={handleChange}
-            />{" "}
-            Female
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="non-binary"
-              checked={formData.gender === "non-binary"}
-              onChange={handleChange}
-            />{" "}
-            Non-Binary
-          </label>
+              className="input"
+              variant="outlined"
+              onKeyPress={preventMinus}
+            />
+
+            <Box
+              className="buttonBox"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "row",
+                marginTop: "15px"
+              }}
+            >
+              <Button
+                type="submit"
+                className="button"
+                variant="contained"
+                color="primary"
+                sx={{
+                  borderRadius: "5px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  margin: "10px"
+                }}
+              >
+                ValueME
+              </Button>
+              <Button
+                type="reset"
+                onClick={handleReset}
+                className="button"
+                variant="outlined"
+                color="secondary"
+                sx={{
+                  borderRadius: "5px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column"
+                }}
+              >
+                Reset
+              </Button>
+            </Box>
+          </form>
         </Box>
 
-        <label htmlFor="age" className="label">
-          AGE
-        </label>
-        <TextField
-          required
-          type="text"
-          min="0"
-          id="age"
-          name="age"
-          placeholder="0"
-          value={formData.age}
-          onChange={handleChange}
-          className="input"
-          variant="outlined"
-          maxLength="100"
-          minLength="0"
-          onKeyPress={preventMinus}
-        />
-
-        <label htmlFor="race" className="label">
-          RACE
-        </label>
-        <Autocomplete
-          id="race"
-          options={races}
-          value={formData.race}
-          onChange={(event, newValue) => {
-            setFormData({ ...formData, race: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              name="race"
-              variant="outlined"
-              placeholder="Select race"
-              onChange={handleChange}
-            />
+        <Box flex="1" marginLeft="20px">
+          {/* Display wage results here */}
+          {searchResults && (
+            <Box className="mt-40">
+              <h3 className="text-[40px]"
+              >Your Value Per Year</h3>
+              <p>{searchResults.income_year}</p>
+            </Box>
           )}
-        />
-
-        <label htmlFor="income_year" className="label">
-          YEARS OF EXPERIENCE
-        </label>
-        <TextField
-          required
-          type="number"
-          min="0"
-          id="income_year"
-          name="income_year"
-          placeholder="Years of Experience"
-          value={formData.income_year}
-          onChange={handleChange}
-          className="input"
-          variant="outlined"
-          onKeyPress={preventMinus}
-        />
-
-        <Box
-          className="buttonBox"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
-            marginTop: "15px"
-          }}
-        >
-          <Button
-            type="submit"
-            className="button"
-            variant="contained"
-            color="primary"
-            sx={{
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              margin: "10px"
-            }}
-          >
-            ValueME
-          </Button>
-          <Button
-            type="reset"
-            onClick={handleReset}
-            className="button"
-            variant="outlined"
-            color="secondary"
-            sx={{
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column"
-            }}
-          >
-            Reset
-          </Button>
         </Box>
-      </form>
-      {/* <Box className="formImg">
-          <Image src="/scale2.gif" height="100" width="100" alt="Scale" unoptimized={true} />
-        </Box> */}
+      </Box>
     </Box>
   );
 };
