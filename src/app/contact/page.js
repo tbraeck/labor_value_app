@@ -8,7 +8,7 @@ const Contact = () => {
       </Box>
 
     <form className="contactCont">
-      <h1>Get in touch</h1>
+      <h1>GET IN TOUCH</h1>
       <div className="email block">
         <label htmlFor="frm-email">Email</label>
         <input
@@ -30,9 +30,10 @@ const Contact = () => {
         />
       </div>
       <div className="name block">
-        <div>
+        <div >
           <label htmlFor="frm-first">First Name</label>
           <input
+            className="w-40"
             id="frm-first"
             type="text"
             name="first"
@@ -55,12 +56,10 @@ const Contact = () => {
         <label htmlFor="frm-message">Message</label>
         <textarea id="frm-message" rows="6" name="message"></textarea>
       </div>
-      <div className="button block">
-        <button type="submit">Submit</button>
+      <div className="button-block">
+        <button  type="submit">Submit</button>
       </div>
     </form>
-
-
     </Box>
   )
 }

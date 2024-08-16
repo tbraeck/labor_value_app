@@ -244,3 +244,16 @@ margin-bottom: 30px;
 textarea {
   resize: none;
 }
+
+.button-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  color: rgb(237, 241, 241);
+  background-color: deepskyblue;
+  
+}
