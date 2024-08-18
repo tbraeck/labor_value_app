@@ -282,12 +282,12 @@ const MainForm = () => {
           </form>
         </Box>
 
-        <Box flex="1" marginLeft="20px">
+        <Box className="flex justify-center items-center w-1/3">
           {/* Display wage results here */}
           {searchResults && (
             <Box className="mt-40">
               <h3 className="text-[40px]"
-              >Your Value Per Year</h3>
+              >HOW MUCH YOU ARE WORTH RIGHT NOW</h3>
               <p>{searchResults.income_year}</p>
             </Box>
           )}
