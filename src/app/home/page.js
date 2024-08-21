@@ -14,7 +14,7 @@ const navItems = [
   { text: 'Contact', link: '/contact' },
 ];
 
-const HomePage = () => {
+const Home = () => {
   return (
     <div className="background-container">
       {/* Reuse the Header component with logo and nav items */}
@@ -72,6 +72,6 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;
 
 

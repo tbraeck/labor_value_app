@@ -101,8 +101,8 @@ body {
   /* margin-top: 20px; */
   filter: drop-shadow(5px 5px 5px  #dedcdc);
   justify-content: center;
-  width: 50%;
-  height: 660px;
+  width: 70%;
+  height: 100%;
   padding-right: 40px;
   padding-left: 40px;
   padding-top: 10px;
@@ -192,9 +192,10 @@ margin-bottom: 30px;
 .contactCont {
   font-size: 1.3rem;
   border-radius: 10px;
+  margin: 0px;
   width: 35%;
   height: 45%;
-  padding: 50px;
+  padding: 25px;
   box-shadow: 0 54px 55px rgb(78 78 78 / 25%), 0 -12px 30px rgb(78 78 78 / 25%),
     0 4px 6px rgb(78 78 78 / 25%), 0 12px 13px rgb(78 78 78 / 25%),
     0 -3px 5px rgb(78 78 78 / 25%);

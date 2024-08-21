@@ -6,8 +6,8 @@ import Header from '../Header';
 const About = () => {
   return (
     <Box >
-      <Box className='flex justify-center flex-col  '>
-        <Header></Header>
+      <Box >
+        <Header className='flex justify-between align-center'></Header>
       </Box>
       <Box  className='flex justify-center items-center flex-col p-6 text-[xx-large]'>
       <Typography sx={{fontSize: "40px"}}  >

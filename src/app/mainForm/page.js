@@ -107,8 +107,8 @@ const MainForm = () => {
       <Box>
         <Header />
       </Box>
-      <Box display="flex">
-        <Box flex="1">
+      <Box display="flex" className='w-2/3'>
+        <Box flex="1" >
           <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="job_title" className="label">
               JOB NAME
@@ -282,7 +282,7 @@ const MainForm = () => {
           </form>
         </Box>
 
-        <Box className="flex justify-center items-center w-1/3">
+        <Box className=" right-0 flex justify-center items-center w-1/3">
           {/* Display wage results here */}
           {searchResults && (
             <Box className="mt-40">
